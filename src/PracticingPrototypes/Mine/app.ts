@@ -28,7 +28,6 @@ interface slotMachine {
   reels: Reel[];
   spin: () => void;
   display: () => void;
-  position: number | null;
 }
 
 let slotMachine: slotMachine = {
@@ -38,23 +37,18 @@ let slotMachine: slotMachine = {
       reel.spin();
     });
   },
-  position: null,
   display() {
     this.reels.forEach((reel) => {
       let printArr = [];
       reel.spin();
       const fixedPosition = reel.position;
       for (let i = -1; i < 2; i++) {
-        if (fixedPosition === 0 && i === -1) {
-          reel.position = 7;
-        } else if (fixedPosition === 7 && i === 1) {
-          reel.position = 0;
-        } else {
-          reel.position = fixedPosition + i;
-        }
+        reel.position =
+          (reel.symbols.length + fixedPosition + i) % reel.symbols.length;
+
         printArr.push(reel.display());
       }
-      console.log(printArr.toString().replaceAll(",", " | "));
+      console.log(printArr.join(" | "));
     });
   },
 };
