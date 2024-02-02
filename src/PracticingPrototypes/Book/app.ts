@@ -3,17 +3,25 @@
     return Math.trunc(1e9 * Math.random()) % max;
   }
 
-  var reel = {
+  type reel = {
+    symbols: string[];
+    position: number | null;
+    spin(): void;
+    display(): string;
+  };
+
+  var reel: reel = {
     symbols: ["X", "Y", "Z", "W", "$", "*", "<", "@"],
+    position: null,
     spin() {
-      if (this.position == null) {
+      if (this.position === null) {
         this.position = randMax(this.symbols.length - 1);
       }
       this.position =
         (this.position + 100 + randMax(100)) % this.symbols.length;
     },
     display(): string {
-      if (this.position == null) {
+      if (this.position === null) {
         this.position = randMax(this.symbols.length - 1);
       }
       return this.symbols[this.position];

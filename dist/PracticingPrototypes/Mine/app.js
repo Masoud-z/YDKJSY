@@ -4,10 +4,8 @@ function randMax(max) {
 }
 let reel = {
     symbols: ["X", "Y", "Z", "W", "$", "*", "<", "@"],
+    position: randMax(7),
     spin() {
-        if (this.position == null) {
-            this.position = randMax(this.symbols.length - 1);
-        }
         this.position = (this.position + 100 + randMax(100)) % this.symbols.length;
     },
     display() {

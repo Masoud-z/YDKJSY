@@ -5,15 +5,16 @@
     }
     var reel = {
         symbols: ["X", "Y", "Z", "W", "$", "*", "<", "@"],
+        position: null,
         spin() {
-            if (this.position == null) {
+            if (this.position === null) {
                 this.position = randMax(this.symbols.length - 1);
             }
             this.position =
                 (this.position + 100 + randMax(100)) % this.symbols.length;
         },
         display() {
-            if (this.position == null) {
+            if (this.position === null) {
                 this.position = randMax(this.symbols.length - 1);
             }
             return this.symbols[this.position];

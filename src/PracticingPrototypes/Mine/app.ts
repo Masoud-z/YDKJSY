@@ -1,13 +1,23 @@
+type Reel = {
+  symbols: string[];
+  position: number;
+  spin(): void;
+  display(): string;
+};
+interface slotMachine {
+  reels: Reel[];
+  spin: () => void;
+  display: () => void;
+}
+
 function randMax(max: number) {
   return Math.trunc(1e9 * Math.random()) % max;
 }
 
-let reel = {
+let reel: Reel = {
   symbols: ["X", "Y", "Z", "W", "$", "*", "<", "@"],
+  position: randMax(7),
   spin() {
-    if (this.position == null) {
-      this.position = randMax(this.symbols.length - 1);
-    }
     this.position = (this.position + 100 + randMax(100)) % this.symbols.length;
   },
   display() {
@@ -17,18 +27,6 @@ let reel = {
     return this.symbols[this.position];
   },
 };
-
-interface Reel {
-  spin: () => void;
-  display: () => string;
-  symbols: string[];
-}
-
-interface slotMachine {
-  reels: Reel[];
-  spin: () => void;
-  display: () => void;
-}
 
 let slotMachine: slotMachine = {
   reels: [Object.create(reel), Object.create(reel), Object.create(reel)],
