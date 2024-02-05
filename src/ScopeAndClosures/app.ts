@@ -8,7 +8,7 @@ let students = [
 type StudentsType = (typeof students)[number];
 type StudentsID = StudentsType["id"];
 
-function getStudentName(studentID: any) {
+function getStudentName(studentID: StudentsID) {
   for (let student of students) {
     if (student.id == studentID) {
       return student.name;
