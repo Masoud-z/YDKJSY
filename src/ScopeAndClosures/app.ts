@@ -5,8 +5,7 @@ let students = [
   { id: 6, name: "Sarah" },
 ] as const;
 
-type StudentsType = (typeof students)[number];
-type StudentsID = StudentsType["id"];
+type StudentsID = (typeof students)[number]["id"];
 
 function getStudentName(studentID: StudentsID) {
   for (let student of students) {
