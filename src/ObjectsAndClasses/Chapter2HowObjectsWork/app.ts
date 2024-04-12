@@ -68,5 +68,26 @@
     console.log(obj.TestGetterSetter);
   }
 
-  defineGetterSetterProperty(myObj);
+  function testArr() {
+    const newArr = [1, 2, 3, 4];
+    newArr[7] = 8;
+    console.log(newArr);
+    console.log(newArr.length);
+    newArr.map((item) => console.log(item));
+  }
+
+  function testObjCharacteristics() {
+    const newObject = { test: 32 };
+    Object.preventExtensions(newObject);
+    newObject.test = 11;
+    Object.seal(newObject);
+    newObject.test = 0;
+    // delete newObject.test; // => This will not work and will throw an error
+    console.log(newObject.test);
+    Object.freeze(newObject);
+    newObject.test = 100;
+    console.log(newObject.test);
+  }
+
+  testObjCharacteristics();
 })();
