@@ -90,4 +90,9 @@
   }
 
   testObjCharacteristics();
+
+  const testObj = { a: 1 };
+  const newCreateObject = Object.create(testObj);
+
+  function test(){}
 })();
