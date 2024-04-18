@@ -9,4 +9,4 @@ class Test {
 const newTest = new Test(1, 2);
 
 newTest.x;
-// newTest.y;  Property 'y' is private and only accessible within class 'Test'.ts
+// newTest.y;  Property 'y' is private and only accessible within class 'Test'
