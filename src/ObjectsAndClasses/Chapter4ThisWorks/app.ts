@@ -5,10 +5,10 @@ interface Point {
   rotate: (angleRadians: number) => void;
   toString: () => string;
 }
-var point: Point = {
+const point: Point = {
   x: null,
   y: null,
-  init(x: number, y: number) {
+  init: function (x: number, y: number) {
     this.x = x;
     this.y = y;
   },
@@ -27,6 +27,9 @@ var point: Point = {
   },
 };
 
-const init = point.init;
+point.init(1, 2);
 
-init(1, 2);
+const anotherPoint = new point.init(5, 6);
+
+console.log(point);
+console.log(anotherPoint);

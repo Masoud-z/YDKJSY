@@ -1,8 +1,8 @@
 "use strict";
-var point = {
+const point = {
     x: null,
     y: null,
-    init(x, y) {
+    init: function (x, y) {
         this.x = x;
         this.y = y;
     },
@@ -18,5 +18,7 @@ var point = {
         return `(${this.x},${this.y})`;
     },
 };
-const init = point.init;
-init(1, 2);
+point.init(1, 2);
+const anotherPoint = new point.init(5, 6);
+console.log(point);
+console.log(anotherPoint);
