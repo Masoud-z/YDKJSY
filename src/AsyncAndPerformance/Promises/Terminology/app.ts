@@ -1,11 +1,33 @@
-var rejectedTh = {
-  then: function (
-    resolved: (rs: string) => any,
-    rejected: (rj: string) => any
-  ) {
-    rejected("Oops");
-  },
-};
-var rejectedPr = Promise.resolve(rejectedTh);
+async function PromiseTest() {
+  let rejectedTh = {
+    then: function (
+      resolved: (rs: string) => any,
+      rejected: (rj: string) => any
+    ) {
+      rejected("Oops");
+    },
+  };
+  var rejectedPr = await Promise.resolve(rejectedTh);
+  console.log(rejectedPr);
+}
 
-rejectedPr.then((res) => console.log(res));
+async function ThenCatch() {
+  let rejectedTh = {
+    then: function (
+      resolved: (rs: string) => any,
+      rejected: (rj: string) => any
+    ) {
+      rejected("Oops");
+    },
+  };
+
+  var rejectedPr = await Promise.resolve(rejectedTh)
+    .then((ms) => ms)
+    .catch((err) => {
+      console.log("catch");
+      return err;
+    });
+  console.log(rejectedPr);
+}
+
+ThenCatch();
