@@ -1,3 +1,4 @@
+import TestString from "../../../app";
 // {
 //   function getY(x: number) {
 //     return new Promise(function (resolve, reject) {
@@ -112,6 +113,7 @@
 //   });
 // }
 
+console.log(TestString);
 {
   function getY(x: number): Promise<number> {
     return new Promise(function (resolve, reject) {
@@ -131,3 +133,27 @@
     console.log(x, y); // 200 599
   });
 }
+
+declare global {
+  interface PromiseConstructor {
+    wrap: (fn: Function) => () => Promise<unknown>;
+  }
+}
+
+Promise.wrap = function (fn) {
+  return function () {
+    var args: Array<(err: any, v: any) => void> = [].slice.call(arguments);
+    return new Promise(function (resolve, reject) {
+      fn.apply(
+        null,
+        args.concat((err, v) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(v);
+          }
+        })
+      );
+    });
+  };
+};
