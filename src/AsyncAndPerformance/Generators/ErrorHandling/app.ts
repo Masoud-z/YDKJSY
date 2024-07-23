@@ -6,6 +6,7 @@
   let it = main();
   it.next().value; // Hello World
   try {
+    //@ts-expect-error
     it.next(42);
   } catch (err) {
     console.log("catch");
@@ -13,20 +14,20 @@
   }
 }
 
-{
-  function* main(): Generator<string> {
-    let x = yield "Hello World";
-    // never gets here
-    console.log(x);
-  }
-  let it = main();
-  it.next();
-  try {
-    // will `*main()` handle this error? we'll see!
-    it.throw("Oops");
-  } catch (err) {
-    // nope, didn't handle it!
-    console.error("catch"); // Oops
-    console.error(err); // Oops
-  }
-}
+// {
+//   function* main(): Generator<string> {
+//     let x = yield "Hello World";
+//     // never gets here
+//     console.log(x);
+//   }
+//   let it = main();
+//   it.next();
+//   try {
+//     // will `*main()` handle this error? we'll see!
+//     it.throw("Oops");
+//   } catch (err) {
+//     // nope, didn't handle it!
+//     console.error("catch"); // Oops
+//     console.error(err); // Oops
+//   }
+// }
