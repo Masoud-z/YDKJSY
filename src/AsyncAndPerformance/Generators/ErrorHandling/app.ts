@@ -15,6 +15,7 @@
 }
 
 //test-change
+//test-change
 
 // {
 //   function* main(): Generator<string> {
