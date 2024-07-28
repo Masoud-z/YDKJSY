@@ -14,9 +14,6 @@
   }
 }
 
-//test-change
-//test-change
-
 // {
 //   function* main(): Generator<string> {
 //     let x = yield "Hello World";
